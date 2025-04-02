@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="dark"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Krish [Your Last Name] - Portfolio</title>
@@ -11,46 +10,121 @@
     <link rel="stylesheet" href="style.css">
     <script>
         tailwind.config = {
-            darkMode: 'class', // Enable dark mode using a class
+            darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                     },
-                    // Add custom colors, spacing, etc. if needed
                 }
             }
         }
     </script>
     </head>
-<body class="antialiased bg-gray-900 text-gray-200 dark">
+<body class="antialiased bg-gray-900 text-gray-200">
 
     <div class="flex flex-col min-h-screen">
 
-        <header class="bg-gray-800 shadow-md sticky top-0 z-50 p-4">
+        <header class="bg-black/50 backdrop-blur-md shadow-md sticky top-0 z-50 p-4">
             <nav class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-white hover:text-blue-400 transition duration-300">Krish</a>
-                <div class="space-x-4">
-                    <a href="#/" class="text-gray-300 hover:text-white">Home</a>
-                    <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
-                    <a href="#publications" class="text-gray-300 hover:text-white">Publications</a>
-                    <a href="#about" class="text-gray-300 hover:text-white">About</a>
-                    </div>
+                <a href="index.html" class="text-2xl font-bold text-red-600 hover:text-red-500 transition duration-300 uppercase tracking-wider">KrishFlix</a> <div class="space-x-4">
+                    <a href="index.html" class="text-gray-300 hover:text-white font-medium">Home</a>
+                    <a href="projects.html" class="text-gray-300 hover:text-white font-medium">Projects</a>
+                    <a href="publications.html" class="text-gray-300 hover:text-white font-medium">Publications</a>
+                    <a href="about.html" class="text-gray-300 hover:text-white font-medium">About</a>
+                </div>
             </nav>
         </header>
+        <main id="app" class="flex-grow pt-8 pb-12 px-4 md:px-8">
 
-        <main id="app" class="flex-grow p-4 md:p-8">
-            <p class="text-center text-gray-500">Loading...</p>
-        </main>
+            <section class="hero-banner mb-12 rounded-lg overflow-hidden relative h-64 md:h-96 flex items-end p-6 md:p-10" style="background-image: linear-gradient(to top, rgba(17, 24, 39, 0.9) 10%, transparent 70%), url('https://placehold.co/1200x500/1f2937/ef4444?text=Featured+Project+Banner'); background-size: cover; background-position: center;">
+                 <div class="z-10">
+                    <h1 class="text-3xl md:text-5xl font-bold text-white mb-2">Featured Project Title</h1>
+                    <p class="text-gray-300 text-sm md:text-base max-w-xl mb-4">A short, engaging description of the most prominent project goes here.</p>
+                    <a href="project/project-1.html" class="hero-button"> <span class="lucide mr-2">&#xea49;</span> View Details
+                    </a>
+                 </div>
+            </section>
 
-        <footer class="bg-gray-800 text-gray-500 py-4 mt-auto">
+            <div class="content-row">
+                <div class="flex justify-between items-baseline mb-3">
+                     <h2 class="content-row__title">Projects</h2>
+                     <a href="projects.html" class="text-sm text-blue-400 hover:text-blue-300 font-medium transition duration-200">See All</a>
+                </div>
+                <div class="content-row__items">
+                    <a href="project/project-1.html" class="item-card group">
+                        <div class="item-card__image-wrapper">
+                            <img src="assets/images/project-1-cover.jpg" alt="Project 1" class="item-card__image" onerror="this.onerror=null; this.src='https://placehold.co/300x170/1e40af/bfdbfe?text=Project+1';">
+                            <div class="item-card__play-icon"><span class="lucide text-3xl">&#xea49;</span></div>
+                        </div>
+                        <div class="item-card__content">
+                            <h3 class="item-card__title">Portfolio Website V1</h3>
+                            <p class="item-card__description">The initial version of this portfolio site using modals.</p>
+                            <div class="item-card__meta">
+                                <span>HTML</span><span>CSS</span><span>JS</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="project/project-2.html" class="item-card group">
+                         <div class="item-card__image-wrapper">
+                            <img src="assets/images/project-2-cover.jpg" alt="Project 2" class="item-card__image" onerror="this.onerror=null; this.src='https://placehold.co/300x170/166534/bbf7d0?text=Project+2';">
+                             <div class="item-card__play-icon"><span class="lucide text-3xl">&#xea49;</span></div>
+                        </div>
+                        <div class="item-card__content">
+                            <h3 class="item-card__title">Data Visualization Dashboard</h3>
+                            <p class="item-card__description">Dashboard displaying complex data insights using D3.js.</p>
+                             <div class="item-card__meta">
+                                <span>D3.js</span><span>JS</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="project/project-3.html" class="item-card group">
+                         <div class="item-card__image-wrapper">
+                            <img src="assets/images/project-3-cover.jpg" alt="Project 3" class="item-card__image" onerror="this.onerror=null; this.src='https://placehold.co/300x170/881337/fecdd3?text=Project+3';">
+                             <div class="item-card__play-icon"><span class="lucide text-3xl">&#xea49;</span></div>
+                        </div>
+                        <div class="item-card__content">
+                            <h3 class="item-card__title">Algorithm Visualizer</h3>
+                            <p class="item-card__description">Visualizes common sorting algorithms step-by-step.</p>
+                             <div class="item-card__meta">
+                                <span>JavaScript</span>
+                            </div>
+                        </div>
+                    </a>
+                    </div>
+            </div>
+
+            <div class="content-row">
+                <div class="flex justify-between items-baseline mb-3">
+                     <h2 class="content-row__title">Publications</h2>
+                     <a href="publications.html" class="text-sm text-blue-400 hover:text-blue-300 font-medium transition duration-200">See All</a>
+                </div>
+                 <div class="content-row__items">
+                    <a href="publication/pub-1.html" class="item-card group">
+                         <div class="item-card__image-wrapper">
+                            <img src="assets/images/pub-1-cover.jpg" alt="Publication 1" class="item-card__image" onerror="this.onerror=null; this.src='https://placehold.co/300x170/5b21b6/ede9fe?text=Pub+1';">
+                             <div class="item-card__play-icon"><span class="lucide text-3xl">&#xea49;</span></div>
+                        </div>
+                        <div class="item-card__content">
+                            <h3 class="item-card__title">Research Paper on AI Ethics</h3>
+                            <p class="item-card__description">Exploring ethical considerations in modern AI.</p>
+                             <div class="item-card__meta">
+                                <span>AI Ethics</span><span>FCTE 2024</span>
+                            </div>
+                        </div>
+                    </a>
+                     </div>
+            </div>
+
+             </main>
+
+        <footer class="bg-gray-950 text-gray-500 py-6 mt-auto border-t border-gray-800">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
                 &copy; 2025 Krish [Your Last Name]. All Rights Reserved.
-                <p class="mt-1">Powered by Vanilla JS SPA on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
+                <p class="mt-1">Inspired by streaming platforms | Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
             </div>
         </footer>
-    </div>
+        </div>
 
-    <script src="app.js"></script>
-</body>
+    </body>
 </html>

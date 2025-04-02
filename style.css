@@ -1,56 +1,205 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Krish [Your Last Name] - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <script>
-        tailwind.config = {
-            darkMode: 'class', // Enable dark mode using a class
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    // Add custom colors, spacing, etc. if needed
-                }
-            }
-        }
-    </script>
-    </head>
-<body class="antialiased bg-gray-900 text-gray-200 dark">
+/* style.css */
 
-    <div class="flex flex-col min-h-screen">
-
-        <header class="bg-gray-800 shadow-md sticky top-0 z-50 p-4">
-            <nav class="max-w-7xl mx-auto flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-white hover:text-blue-400 transition duration-300">Krish</a>
-                <div class="space-x-4">
-                    <a href="#/" class="text-gray-300 hover:text-white">Home</a>
-                    <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
-                    <a href="#publications" class="text-gray-300 hover:text-white">Publications</a>
-                    <a href="#about" class="text-gray-300 hover:text-white">About</a>
-                    </div>
-            </nav>
-        </header>
-
-        <main id="app" class="flex-grow p-4 md:p-8">
-            <p class="text-center text-gray-500">Loading...</p>
-        </main>
-
-        <footer class="bg-gray-800 text-gray-500 py-4 mt-auto">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-                &copy; 2025 Krish [Your Last Name]. All Rights Reserved.
-                <p class="mt-1">Powered by Vanilla JS SPA on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
-            </div>
-        </footer>
-    </div>
-
-    <script src="app.js"></script>
-</body>
-</html>
+/* Load Lucide Icons Font */
+@font-face {
+    font-family: 'LucideIcons';
+    src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
+    font-display: swap;
+  }
+  
+  .lucide {
+    font-family: 'LucideIcons';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block; /* Important for alignment */
+  }
+  
+  /* Apply base font from HTML */
+  body {
+    font-family: 'Inter', sans-serif;
+    overscroll-behavior-x: none; /* Prevent pull-to-refresh on horizontal scroll */
+  }
+  
+  /* --- Homepage Row Styles --- */
+  .content-row {
+    margin-bottom: 2.5rem; /* Increased space between rows */
+  }
+  
+  .content-row__title {
+    @apply text-xl md:text-2xl font-semibold mb-3 text-gray-100; /* Lighter title */
+  }
+  
+  .content-row__items {
+    @apply flex overflow-x-auto space-x-3 md:space-x-4 pb-6 -mb-6 pl-1; /* Add padding for scroll visibility */
+    /* Hide scrollbar (cross-browser) */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .content-row__items::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+  
+  /* --- Item Card Styles (Homepage Rows & Grids) --- */
+  .item-card {
+    @apply bg-gray-800 rounded-md overflow-hidden shadow-lg flex-shrink-0 w-52 sm:w-60 md:w-72 transform transition-all duration-300 ease-in-out cursor-pointer relative border border-transparent hover:border-gray-600;
+    /* Note: Increased base width slightly */
+  }
+  
+  /* Hover effect: Scale up and bring forward */
+  .item-card:hover {
+    @apply scale-105 md:scale-110 z-20 shadow-2xl bg-gray-700;
+    /* Delay transition slightly for smoother feel */
+    transition-delay: 50ms;
+  }
+  
+  .item-card__image-wrapper {
+      @apply relative block w-full aspect-video bg-gray-700; /* 16:9 aspect ratio */
+  }
+  
+  .item-card__image {
+    @apply absolute inset-0 w-full h-full object-cover transition-opacity duration-300;
+  }
+  .item-card:hover .item-card__image {
+      /* Optional: Slightly fade image on hover if content expands */
+      /* opacity: 0.8; */
+  }
+  
+  /* Play icon overlay - shown on hover */
+  .item-card__play-icon {
+      @apply absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 opacity-0 group-hover:opacity-100 text-white;
+  }
+  
+  .item-card__content {
+    @apply p-3 space-y-1;
+  }
+  
+  .item-card__title {
+    @apply text-sm md:text-base font-semibold text-white truncate;
+  }
+  
+  .item-card__description {
+    @apply text-xs text-gray-400 h-8 overflow-hidden leading-tight; /* Limit description height (2 lines approx) */
+     /* Hide description initially, show on hover (alternative style) */
+    /* @apply text-xs text-gray-400 max-h-0 opacity-0 group-hover:max-h-10 group-hover:opacity-100 overflow-hidden transition-all duration-300 ease-in-out; */
+  }
+  
+  /* Metadata tags (e.g., technologies) */
+  .item-card__meta {
+      @apply pt-1 mt-1 border-t border-gray-700 flex flex-wrap gap-1;
+      /* Hide initially, show on hover */
+      @apply max-h-0 opacity-0 group-hover:max-h-20 group-hover:opacity-100 overflow-hidden transition-all duration-300 ease-in-out;
+  }
+  .item-card__meta span {
+      @apply bg-gray-600 text-gray-300 text-[10px] font-medium px-1.5 py-0.5 rounded;
+  }
+  
+  
+  /* --- Grid Layout (Category Pages) --- */
+  .item-grid {
+      @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 md:gap-6;
+  }
+  .item-grid .item-card {
+      @apply w-full; /* Cards take full width of their grid cell */
+  }
+  /* Adjust hover scale for grid */
+  .item-grid .item-card:hover {
+      @apply scale-105 z-20 shadow-2xl bg-gray-700; /* Less aggressive scale than row hover */
+  }
+  
+  /* --- Hero Banner (Homepage) --- */
+  .hero-button {
+      @apply inline-flex items-center bg-white hover:bg-gray-200 text-gray-900 font-bold py-2 px-5 rounded shadow-md transition duration-300 ease-in-out transform hover:scale-105;
+  }
+  
+  /* --- Detail Page Styles --- */
+  .detail-header-container {
+      @apply mb-8 md:mb-12 relative aspect-[16/7] md:aspect-[16/5] overflow-hidden rounded-lg; /* Wide aspect ratio */
+      min-height: 300px; /* Minimum height */
+  }
+  
+  .detail-backdrop-img {
+      @apply absolute inset-0 w-full h-full object-cover;
+  }
+  
+  .detail-backdrop-overlay {
+      @apply absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/70 to-transparent; /* Gradient overlay */
+  }
+  
+  .detail-content-container {
+      @apply absolute bottom-0 left-0 p-6 md:p-10 z-10 max-w-3xl; /* Position content over gradient */
+  }
+  
+  .detail-title {
+      @apply text-3xl md:text-5xl font-bold text-white mb-2 md:mb-4 shadow-lg;
+  }
+  
+  .detail-meta-info {
+      @apply flex items-center space-x-4 text-gray-300 text-sm md:text-base mb-4;
+  }
+  .detail-meta-info span {
+      @apply font-medium;
+  }
+  .detail-meta-info .separator {
+      @apply text-gray-500;
+  }
+  
+  .detail-description {
+      @apply text-gray-200 mb-5 md:mb-6 leading-relaxed text-sm md:text-base;
+  }
+  
+  .detail-links a {
+      @apply inline-flex items-center bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md shadow-md transition duration-300 mr-3 mb-2 text-sm md:text-base transform hover:scale-105;
+  }
+  .detail-links a .lucide {
+      @apply mr-1.5 text-lg; /* Adjust icon size/margin */
+  }
+  /* Secondary link style */
+  .detail-links a.secondary {
+       @apply bg-gray-600 hover:bg-gray-500;
+  }
+  
+  /* README / Details Section */
+  .detail-body {
+      @apply max-w-4xl mx-auto px-4 md:px-0; /* Center content below header */
+  }
+  
+  .detail-readme-section {
+      @apply mt-8 bg-gray-800/50 p-4 md:p-6 rounded-lg;
+  }
+  .detail-readme-section h2 {
+      @apply text-xl md:text-2xl font-semibold mb-4 text-white border-b border-gray-700 pb-2;
+  }
+  /* Basic styling for pre/code inside readme */
+  .detail-readme-section pre {
+      @apply bg-gray-900 p-3 rounded overflow-x-auto text-sm text-gray-300 my-4 font-mono;
+  }
+  .detail-readme-section code {
+       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+  .detail-readme-section pre code {
+      background-color: transparent;
+      padding: 0;
+  }
+  .detail-readme-section > div > *:not(pre):not(h2):not(h3):not(ul):not(ol) code { /* Inline code */
+      @apply bg-gray-700 text-gray-200 text-sm px-1 py-0.5 rounded mx-0.5;
+  }
+  .detail-readme-section h3 {
+      @apply text-lg font-semibold mt-4 mb-2 text-gray-100;
+  }
+  .detail-readme-section ul {
+      @apply list-disc list-outside pl-6 my-3 text-gray-300 space-y-1;
+  }
+  .detail-readme-section p {
+      @apply text-gray-300 mb-3 leading-relaxed;
+  }
+  
+  /* --- General --- */
+  /* Add smooth scrolling if preferred over default browser behavior */
+  /* html { scroll-behavior: smooth; } */
+  
+  
