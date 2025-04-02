@@ -1,18 +1,18 @@
-// app.js - Simple Vanilla JS SPA Router and Renderer
+// app.js - Netflix/Spotify-inspired SPA Router and Renderer
 
 // --- Data ---
-// Replace with your actual project and publication data
+// This data structure remains the same as in your original code
 const portfolioData = {
     projects: [
         {
-            id: 'project-1', // Unique slug/ID for routing
+            id: 'project-1', 
             title: 'Portfolio Website V1',
             shortDescription: 'The initial version of this portfolio site.',
             longDescription: 'Built using HTML, Tailwind CSS, and vanilla JavaScript with a modal view for project details.',
             technologies: ['HTML', 'CSS', 'TailwindCSS', 'JavaScript'],
-            imageUrl: 'https://placehold.co/600x400/bfdbfe/1e40af?text=Project+1', // Use your actual project image URL
-            githubUrl: '#', // Link to your GitHub repo
-            liveUrl: '#', // Link to live demo if available
+            imageUrl: 'https://placehold.co/600x400/bfdbfe/1e40af?text=Project+1',
+            githubUrl: '#',
+            liveUrl: '#',
             readme: `### Features\n* Single Page Layout\n* Modal view for details\n* Hosted on GitHub Pages\n\n### Tech Stack\n* HTML\n* Tailwind CSS (CDN)\n* Vanilla JavaScript`
         },
         {
@@ -34,10 +34,9 @@ const portfolioData = {
             technologies: ['HTML', 'CSS', 'JavaScript'],
             imageUrl: 'https://placehold.co/600x400/fecdd3/881337?text=Project+3',
             githubUrl: '#',
-            liveUrl: null, // Set to null or omit if no live link
+            liveUrl: null,
             readme: `### Algorithms Included\n* Bubble Sort\n* Selection Sort\n* Merge Sort (Conceptual)\n\nUsers can control the speed and step through the visualization.`
         },
-        // Add more projects...
     ],
     publications: [
         {
@@ -48,11 +47,10 @@ const portfolioData = {
             authors: 'Krish [Your Last Name], Prof. Jane Doe',
             venue: 'FCTE 2024',
             year: 2024,
-            imageUrl: 'https://placehold.co/600x400/ede9fe/5b21b6?text=Pub+1', // Optional image
-            paperUrl: '#', // Link to PDF or publication page
+            imageUrl: 'https://placehold.co/600x400/ede9fe/5b21b6?text=Pub+1',
+            paperUrl: '#',
             readme: `### Abstract\nThis paper examines the growing ethical challenges posed by artificial intelligence... \n\n### Key Contributions\n* Analysis of bias sources.\n* Proposed framework for ethical AI development.`
         },
-        // Add more publications...
     ],
     about: {
         name: "Krish [Your Last Name]",
@@ -61,7 +59,7 @@ const portfolioData = {
 
 I enjoy tackling challenging problems, learning new technologies, and collaborating on exciting projects. My goal is to leverage my skills to create innovative and impactful solutions. Feel free to explore my work and get in touch!`,
         skills: ['Python', 'Java', 'JavaScript', 'React', 'SQL', 'Git', 'Docker', 'Cloud Platforms'],
-        imageUrl: 'https://placehold.co/400x400/dbeafe/1e3a8a?text=About+Graphic', // Optional graphic
+        imageUrl: 'https://placehold.co/400x400/dbeafe/1e3a8a?text=About+Graphic',
         resumeUrl: '[YOUR_RESUME_LINK_HERE].pdf',
         contact: {
             github: 'https://github.com/krish1375',
@@ -79,12 +77,22 @@ const appContainer = document.getElementById('app');
 // Function to create HTML for a single item card
 function createItemCard(item, type) {
     const link = type === 'project' ? `#/project/${item.id}` : `#/publication/${item.id}`;
+    
     return `
-        <a href="${link}" class="item-card block group" data-id="${item.id}">
-            <img src="${item.imageUrl || 'https://placehold.co/600x400/7f1d1d/fecaca?text=No+Image'}" alt="${item.title}" class="w-full h-32 md:h-40 object-cover transition-opacity duration-300 group-hover:opacity-80" onerror="this.onerror=null; this.src='https://placehold.co/600x400/7f1d1d/fecaca?text=Load+Error';">
+        <a href="${link}" class="item-card group" data-id="${item.id}">
+            <div class="item-card__image-wrapper">
+                <img src="${item.imageUrl || 'https://placehold.co/600x400/7f1d1d/fecaca?text=No+Image'}" 
+                     alt="${item.title}" 
+                     class="item-card__image" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/600x400/7f1d1d/fecaca?text=Load+Error';">
+                <div class="item-card__play-icon"><span class="lucide text-3xl">&#xea49;</span></div>
+            </div>
             <div class="item-card__content">
                 <h3 class="item-card__title">${item.title}</h3>
                 <p class="item-card__description">${item.shortDescription || ''}</p>
+                <div class="item-card__meta">
+                    ${(item.technologies || []).map(tech => `<span>${tech}</span>`).join('')}
+                </div>
             </div>
         </a>
     `;
@@ -93,7 +101,9 @@ function createItemCard(item, type) {
 // Function to create HTML for a content row (like Netflix genres)
 function createContentRow(title, items, type, seeAllLink = null) {
     if (!items || items.length === 0) return ''; // Don't render empty rows
+    
     const seeAllButton = seeAllLink ? `<a href="${seeAllLink}" class="text-sm text-blue-400 hover:text-blue-300 ml-auto">See All</a>` : '';
+    
     return `
         <div class="content-row">
             <div class="flex items-baseline mb-3">
@@ -107,20 +117,36 @@ function createContentRow(title, items, type, seeAllLink = null) {
     `;
 }
 
-// Render the Homepage View
+// Render the Homepage View with hero banner
 function renderHomepage() {
     console.log("Rendering Homepage");
+    
+    // Get a featured project (first project or random)
+    const featuredProject = portfolioData.projects[0];
+    
     appContainer.innerHTML = `
+        <section class="hero-banner mb-12 rounded-lg overflow-hidden relative h-64 md:h-96 flex items-end p-6 md:p-10" 
+                 style="background-image: linear-gradient(to top, rgba(17, 24, 39, 0.9) 10%, transparent 70%), 
+                 url('${featuredProject.imageUrl}'); background-size: cover; background-position: center;">
+            <div class="z-10">
+                <h1 class="text-3xl md:text-5xl font-bold text-white mb-2">${featuredProject.title}</h1>
+                <p class="text-gray-300 text-sm md:text-base max-w-xl mb-4">${featuredProject.shortDescription}</p>
+                <a href="#/project/${featuredProject.id}" class="hero-button">
+                    <span class="lucide mr-2">&#xea49;</span> View Details
+                </a>
+            </div>
+        </section>
+        
         ${createContentRow('Featured Projects', portfolioData.projects.slice(0, 5), 'project', '#/projects')}
         ${createContentRow('Recent Publications', portfolioData.publications.slice(0, 5), 'publication', '#/publications')}
-        `;
+    `;
 }
 
 // Render the Category Page View (e.g., All Projects)
 function renderCategoryPage(type) {
     console.log(`Rendering Category Page: ${type}`);
-    const items = portfolioData[type] || []; // e.g., portfolioData.projects
-    const title = type.charAt(0).toUpperCase() + type.slice(1); // Capitalize type name
+    const items = portfolioData[type] || [];
+    const title = type.charAt(0).toUpperCase() + type.slice(1);
 
     if (items.length === 0) {
         appContainer.innerHTML = `<h1 class="text-3xl font-bold mb-6 text-white">All ${title}</h1><p class="text-gray-400">No ${type} found.</p>`;
@@ -130,15 +156,18 @@ function renderCategoryPage(type) {
     appContainer.innerHTML = `
         <h1 class="text-3xl font-bold mb-6 text-white">All ${title}</h1>
         <div class="item-grid">
-            ${items.map(item => createItemCard(item, type)).join('')}
+            ${items.map(item => createItemCard(item, type.slice(0, -1))).join('')}
         </div>
     `;
 }
 
-// Render the Detail Page View (e.g., Single Project)
+// Render the Detail Page View (e.g., Single Project) with Netflix-style header
 function renderDetailPage(type, id) {
     console.log(`Rendering Detail Page: ${type}, ID: ${id}`);
-    const item = (portfolioData[type] || []).find(p => p.id === id);
+    
+    // Convert plural type to singular and look in the right collection
+    const typeCollection = type.endsWith('s') ? type : type + 's';
+    const item = (portfolioData[typeCollection] || []).find(p => p.id === id);
 
     if (!item) {
         appContainer.innerHTML = `<p class="text-center text-red-400">Error: ${type} with ID '${id}' not found.</p><p class="text-center mt-4"><a href="#/" class="text-blue-400 hover:underline">Go Home</a></p>`;
@@ -148,54 +177,58 @@ function renderDetailPage(type, id) {
     // Basic Markdown to HTML conversion (very simple)
     const readmeHtml = item.readme
         ? item.readme
-              .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mt-3 mb-1">$1</h3>') // ### headers
-              .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold mt-4 mb-2">$1</h2>')   // ## headers
-              .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc">$1</li>') // List items
-              // Handle potential code blocks (simple approach)
+              .replace(/^### (.*$)/gim, '<h3 class="text-lg font-semibold mt-3 mb-1">$1</h3>')
+              .replace(/^## (.*$)/gim, '<h2 class="text-xl font-semibold mt-4 mb-2">$1</h2>')
+              .replace(/^\* (.*$)/gim, '<li class="ml-4 list-disc">$1</li>')
               .replace(/```(\w*)\n([\s\S]*?)\n```/g, (match, lang, code) => `<pre><code class="language-${lang || ''}">${code.trim().replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>`)
-              .replace(/`([^`]+)`/g, '<code>$1</code>') // Inline code
-              .replace(/\n/g, '<br>') // Newlines (use cautiously) - might be better handled by CSS whitespace
-              .replace(/<br><li/g, '<li') // Fix extra breaks before list items
-              .replace(/<br><h[23]/g, (match) => match.replace('<br>', '')) // Fix extra breaks before headers
-              .replace(/<br><pre/g, '<pre') // Fix extra breaks before pre
+              .replace(/`([^`]+)`/g, '<code>$1</code>')
+              .replace(/\n/g, '<br>')
+              .replace(/<br><li/g, '<li')
+              .replace(/<br><h[23]/g, (match) => match.replace('<br>', ''))
+              .replace(/<br><pre/g, '<pre')
         : '<p>No details available.</p>';
 
-
     appContainer.innerHTML = `
-        <div class="detail-page max-w-5xl mx-auto">
-            <div class="detail-header">
-                <img src="${item.imageUrl || ''}" alt="" class="detail-backdrop" onerror="this.style.display='none'">
-
-                <div class="detail-content">
-                    <div class="detail-poster">
-                         <img src="${item.imageUrl || 'https://placehold.co/400x600/7f1d1d/fecaca?text=No+Image'}" alt="${item.title}" onerror="this.onerror=null; this.src='https://placehold.co/400x600/7f1d1d/fecaca?text=Load+Error';">
+        <div class="detail-page">
+            <div class="detail-header-container">
+                <img src="${item.imageUrl || ''}" alt="" class="detail-backdrop-img" onerror="this.style.display='none'">
+                <div class="detail-backdrop-overlay"></div>
+                
+                <div class="detail-content-container">
+                    <h1 class="detail-title">${item.title}</h1>
+                    
+                    ${type === 'publication' ? 
+                        `<p class="text-sm text-gray-400 -mt-2 mb-2">By ${item.authors || 'N/A'} | ${item.venue || ''} (${item.year || 'N/A'})</p>` : ''}
+                    
+                    <div class="detail-meta-info">
+                        ${(item.technologies || []).map(tech => `<span>${tech}</span>`).join('<span class="separator"> • </span>')}
                     </div>
-                    <div class="detail-info flex-grow">
-                        <h1>${item.title}</h1>
-                        ${type === 'publication' ? `<p class="text-sm text-gray-400 -mt-2 mb-2">By ${item.authors || 'N/A'} | ${item.venue || ''} (${item.year || 'N/A'})</p>` : ''}
-                        <p>${item.longDescription || item.shortDescription || ''}</p>
-                        <div class="detail-meta mb-4">
-                            ${(item.technologies || []).map(tech => `<span>${tech}</span>`).join('')}
-                        </div>
-                        <div class="detail-links">
-                            ${item.liveUrl ? `<a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer"><span class="lucide">&#xea3f;</span> Live Demo</a>` : ''}
-                            ${item.githubUrl ? `<a href="${item.githubUrl}" target="_blank" rel="noopener noreferrer"><span class="lucide">&#xe9c9;</span> GitHub</a>` : ''}
-                            ${item.paperUrl ? `<a href="${item.paperUrl}" target="_blank" rel="noopener noreferrer"><span class="lucide">&#xea76;</span> Read Paper</a>` : ''}
-                        </div>
+                    
+                    <p class="detail-description">${item.longDescription || item.shortDescription || ''}</p>
+                    
+                    <div class="detail-links">
+                        ${item.liveUrl ? `<a href="${item.liveUrl}" target="_blank" rel="noopener noreferrer"><span class="lucide">&#xea3f;</span> Live Demo</a>` : ''}
+                        ${item.githubUrl ? `<a href="${item.githubUrl}" target="_blank" rel="noopener noreferrer" class="secondary"><span class="lucide">&#xe9c9;</span> GitHub</a>` : ''}
+                        ${item.paperUrl ? `<a href="${item.paperUrl}" target="_blank" rel="noopener noreferrer"><span class="lucide">&#xea76;</span> Read Paper</a>` : ''}
                     </div>
                 </div>
             </div>
 
             ${item.readme ? `
-            <div class="detail-readme">
-                <h2 class="text-xl font-semibold mb-3 text-white">Details</h2>
-                <div class="prose prose-invert max-w-none text-gray-300">${readmeHtml}</div>
+            <div class="detail-body">
+                <div class="detail-readme-section">
+                    <h2>About This ${type.slice(0, -1).charAt(0).toUpperCase() + type.slice(0, -1).slice(1)}</h2>
+                    <div class="prose prose-invert max-w-none text-gray-300">${readmeHtml}</div>
+                </div>
             </div>
             ` : ''}
+            
+            <!-- Related Projects Section -->
+            ${type === 'project' ? createContentRow('More Projects You Might Like', 
+                portfolioData.projects.filter(p => p.id !== item.id).slice(0, 4), 
+                'project') : ''}
         </div>
     `;
-     // Add prose-invert for Tailwind typography plugin dark mode compatibility if using it
-     // Basic manual styling for prose elements is in the CSS
 }
 
 // Render About Page
@@ -226,7 +259,6 @@ function renderAboutPage() {
                            <span class="lucide mr-2">&#xe94a;</span>
                            Download Resume
                        </a>` : ''}
-
                  </div>
                  <div class="md:col-span-2">
                      <h3 class="text-xl font-semibold mb-3 text-white border-b border-gray-700 pb-2">Bio</h3>
@@ -242,12 +274,11 @@ function renderAboutPage() {
     `;
 }
 
-
 // --- Router ---
 function handleRouteChange() {
     const hash = window.location.hash || '#/';
     console.log(`Route changed to: ${hash}`);
-    appContainer.innerHTML = '<p class="text-center text-gray-500">Loading...</p>'; // Clear previous content
+    appContainer.innerHTML = '<p class="text-center text-gray-500">Loading...</p>'; // Loading indicator
 
     // Simple Routing Logic
     if (hash === '#/' || hash === '#') {
@@ -257,7 +288,7 @@ function handleRouteChange() {
     } else if (hash === '#/publications') {
         renderCategoryPage('publications');
     } else if (hash === '#/about') {
-         renderAboutPage();
+        renderAboutPage();
     } else if (hash.startsWith('#/project/')) {
         const projectId = hash.substring('#/project/'.length);
         renderDetailPage('projects', projectId);
@@ -280,8 +311,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initial route handling
     handleRouteChange();
-
-    // Add event listeners to nav links if needed (though href handles hash change)
-    // Example: document.querySelectorAll('header nav a').forEach(link => link.addEventListener('click', handleRouteChange));
 });
-
