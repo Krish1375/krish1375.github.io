@@ -9,207 +9,48 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode using a class
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    // Add custom colors, spacing, etc. if needed
+                }
+            }
+        }
+    </script>
     </head>
-<body class="antialiased">
+<body class="antialiased bg-gray-900 text-gray-200 dark">
 
-    <nav class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex-shrink-0">
-                    <a href="#" class="text-2xl font-bold text-gray-800 hover:text-blue-600 transition duration-300">Krish [Your Last Name]</a>
-                </div>
-                <div class="hidden md:flex items-center space-x-4">
-                    <a href="#about" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">About</a>
-                    <a href="#projects" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Projects</a>
-                    <a href="#publications" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Publications</a>
-                    <a href="#resume" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Resume</a>
-                    <a href="#contact" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition duration-300">Contact</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button class="text-gray-600 hover:text-blue-600 focus:outline-none focus:text-blue-600">
-                        <span class="lucide text-2xl">&#xe99a;</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        </nav>
+    <div class="flex flex-col min-h-screen">
 
-    <section class="hero-gradient text-white py-24 md:py-32">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <img src="https://placehold.co/160x160/e0f2fe/0c4a6e?text=Krish"
-                 alt="Krish [Your Last Name]"
-                 class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-white/50 shadow-lg object-cover"
-                 onerror="this.onerror=null; this.src='https://placehold.co/160x160/e0f2fe/0c4a6e?text=Image+Error';">
-            <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">Hi, I'm Krish!</h1>
-            <p class="text-lg md:text-xl mb-8 text-blue-100">A passionate Computer Science student exploring the world of technology.</p>
-            <a href="#projects" class="bg-white text-blue-600 hover:bg-blue-50 font-semibold py-3 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                View My Work
-            </a>
-        </div>
-    </section>
-
-    <section id="about" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-header">About Me</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-1 text-center">
-                     <img src="https://placehold.co/400x400/dbeafe/1e3a8a?text=About+Graphic" alt="About Graphic" class="rounded-lg shadow-md mx-auto" onerror="this.onerror=null; this.src='https://placehold.co/400x400/dbeafe/1e3a8a?text=Image+Error';">
-                </div>
-                <div class="md:col-span-2">
-                    <p class="text-lg text-gray-700 mb-4">
-                        Hello! I'm Krish, currently pursuing a degree in Computer Science at [Your University Name]. I'm deeply interested in [mention 1-2 specific areas like AI, Web Development, Cybersecurity, etc.].
-                    </p>
-                    <p class="text-lg text-gray-700 mb-6">
-                        I enjoy tackling challenging problems, learning new technologies, and collaborating on exciting projects. My goal is to leverage my skills to create innovative and impactful solutions. Feel free to explore my work and get in touch!
-                    </p>
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Key Skills:</h3>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-100 text-blue-800 text-sm font-medium px-3 py-1 rounded-full">Python</span>
-                        <span class="bg-green-100 text-green-800 text-sm font-medium px-3 py-1 rounded-full">Java</span>
-                        <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-3 py-1 rounded-full">JavaScript</span>
-                        <span class="bg-purple-100 text-purple-800 text-sm font-medium px-3 py-1 rounded-full">React</span>
-                        <span class="bg-indigo-100 text-indigo-800 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
-                        <span class="bg-pink-100 text-pink-800 text-sm font-medium px-3 py-1 rounded-full">Git</span>
-                        </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-20 bg-gray-50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-header">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/bfdbfe/1e40af?text=Project+1" alt="Project 1 Thumbnail" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Image+Not+Found';">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Project Title 1</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
-                            A brief description of the project. What problem does it solve? What was your role?
-                        </p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech1</span>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech2</span>
-                        </div>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-                            View Project <span class="lucide ml-1 text-xs">&#xea3f;</span> </a>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium text-sm ml-4">
-                            GitHub <span class="lucide ml-1 text-xs">&#xe9c9;</span> </a>
+        <header class="bg-gray-800 shadow-md sticky top-0 z-50 p-4">
+            <nav class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white hover:text-blue-400 transition duration-300">Krish</a>
+                <div class="space-x-4">
+                    <a href="#/" class="text-gray-300 hover:text-white">Home</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
+                    <a href="#publications" class="text-gray-300 hover:text-white">Publications</a>
+                    <a href="#about" class="text-gray-300 hover:text-white">About</a>
                     </div>
-                </div>
+            </nav>
+        </header>
 
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300 ease-in-out">
-                     <img src="https://placehold.co/600x400/bbf7d0/166534?text=Project+2" alt="Project 2 Thumbnail" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Image+Not+Found';">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Project Title 2</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
-                            Describe another awesome project you worked on. Highlight key features or challenges.
-                        </p>
-                        <div class="mb-4">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech3</span>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech4</span>
-                        </div>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-                            View Demo <span class="lucide ml-1 text-xs">&#xea3f;</span> </a>
-                         <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium text-sm ml-4">
-                            GitHub <span class="lucide ml-1 text-xs">&#xe9c9;</span> </a>
-                    </div>
-                </div>
+        <main id="app" class="flex-grow p-4 md:p-8">
+            <p class="text-center text-gray-500">Loading...</p>
+        </main>
 
-                <div class="bg-white rounded-lg shadow-md overflow-hidden project-card transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/600x400/fecdd3/881337?text=Project+3" alt="Project 3 Thumbnail" class="w-full h-48 object-cover" onerror="this.onerror=null; this.src='https://placehold.co/600x400/cccccc/969696?text=Image+Not+Found';">
-                    <div class="p-6">
-                        <h3 class="text-xl font-semibold mb-2 text-gray-800">Project Title 3</h3>
-                        <p class="text-gray-600 mb-4 text-sm">
-                           Add details about a third project. Maybe a group project or a personal passion project.
-                        </p>
-                         <div class="mb-4">
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech5</span>
-                            <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2 mb-2">#Tech6</span>
-                        </div>
-                        <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-                            Read More <span class="lucide ml-1 text-xs">&#xea3f;</span> </a>
-                         <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-gray-600 hover:text-gray-800 font-medium text-sm ml-4">
-                            GitHub <span class="lucide ml-1 text-xs">&#xe9c9;</span> </a>
-                    </div>
-                </div>
-                </div>
-        </div>
-    </section>
-
-    <section id="publications" class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 section-header">Publications</h2>
-            <div class="space-y-8">
-                <div class="p-6 border border-gray-200 rounded-lg hover:shadow-sm transition duration-300">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Publication Title 1</h3>
-                    <p class="text-sm text-gray-500 mb-2">Authors: Krish [Your Last Name], Co-author 1, Co-author 2</p>
-                    <p class="text-sm text-gray-700 mb-3">
-                        Published in <span class="font-medium">[Conference/Journal Name]</span>, [Year].
-                    </p>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-                        Read Paper <span class="lucide ml-1 text-xs">&#xea3f;</span> </a>
-                </div>
-
-                <div class="p-6 border border-gray-200 rounded-lg hover:shadow-sm transition duration-300">
-                    <h3 class="text-lg font-semibold text-gray-800 mb-1">Publication Title 2 (If Applicable)</h3>
-                    <p class="text-sm text-gray-500 mb-2">Authors: Krish [Your Last Name], ...</p>
-                    <p class="text-sm text-gray-700 mb-3">
-                        Appeared in <span class="font-medium">[Venue]</span>, [Year].
-                    </p>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-medium text-sm">
-                        View Details <span class="lucide ml-1 text-xs">&#xea3f;</span> </a>
-                </div>
-
-                <p class="text-center text-gray-500 italic">
-                    (Remove this section if you don't have publications yet.)
-                </p>
+        <footer class="bg-gray-800 text-gray-500 py-4 mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+                &copy; 2025 Krish [Your Last Name]. All Rights Reserved.
+                <p class="mt-1">Powered by Vanilla JS SPA on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
             </div>
-        </div>
-    </section>
+        </footer>
+    </div>
 
-    <section id="resume" class="py-20 bg-blue-50">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 section-header">Resume</h2>
-            <p class="text-lg text-gray-700 mb-8">
-                Interested in learning more about my experience and qualifications? Download my resume!
-            </p>
-            <a href="[YOUR_RESUME_LINK_HERE].pdf" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105">
-                <span class="lucide mr-2">&#xe94a;</span> Download Resume (PDF)
-            </a>
-             <p class="mt-4 text-sm text-gray-500">
-                (Remember to upload your resume PDF to your GitHub repo and link it here)
-            </p>
-        </div>
-    </section>
-
-    <section id="contact" class="py-20 bg-gray-800 text-gray-300">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6 section-header">Get In Touch</h2>
-            <p class="text-lg mb-8 text-gray-400">
-                I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
-            </p>
-            <div class="flex justify-center space-x-6">
-                <a href="https://github.com/krish1375" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300" aria-label="GitHub Profile">
-                    <span class="lucide text-3xl">&#xe9c9;</span> </a>
-                <a href="[YOUR_LINKEDIN_URL_HERE]" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition duration-300" aria-label="LinkedIn Profile">
-                   <span class="lucide text-3xl">&#xe9cb;</span> </a>
-                <a href="mailto:[YOUR_EMAIL_HERE]" class="text-gray-400 hover:text-white transition duration-300" aria-label="Email">
-                    <span class="lucide text-3xl">&#xe94e;</span> </a>
-                 </div>
-             <p class="mt-8 text-sm text-gray-500">
-                (Remember to replace the placeholder links above with your actual profile URLs and email address)
-            </p>
-        </div>
-    </section>
-
-    <footer class="bg-gray-900 text-gray-500 py-6">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
-            &copy; 2025 Krish [Your Last Name]. All Rights Reserved.
-            <p class="mt-1">Hosted on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
-        </div>
-    </footer>
-
-    </body>
+    <script src="app.js"></script>
+</body>
 </html>

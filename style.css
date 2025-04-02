@@ -1,65 +1,56 @@
-/* style.css */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krish [Your Last Name] - Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // Enable dark mode using a class
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    // Add custom colors, spacing, etc. if needed
+                }
+            }
+        }
+    </script>
+    </head>
+<body class="antialiased bg-gray-900 text-gray-200 dark">
 
-/* Load Lucide Icons Font */
-@font-face {
-    font-family: 'LucideIcons';
-    src: url(https://cdn.jsdelivr.net/npm/lucide-static@latest/font/Lucide.ttf) format('truetype');
-    font-display: swap; /* Improve font loading performance */
-  }
-  
-  /* Apply Lucide font family to elements using the .lucide class */
-  .lucide {
-    font-family: 'LucideIcons';
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-rendering: auto;
-    line-height: 1; /* Ensure consistent line height */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: inline-block; /* Crucial for proper alignment and sizing */
-  }
-  
-  /* Basic smooth scroll behavior */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Default body styles (Font is set via link in HTML, but good to have fallbacks) */
-  body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background-color: #f8fafc; /* Tailwind gray-50 */
-    color: #1f2937; /* Tailwind gray-800 */
-    -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit browsers */
-    -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
-  }
-  
-  /* Custom gradient background for the hero section */
-  .hero-gradient {
-    background: linear-gradient(135deg, #6ee7b7, #3b82f6); /* Tailwind emerald-300 to blue-500 */
-  }
-  
-  /* Project card hover effect */
-  .project-card {
-     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
-  }
-  
-  .project-card:hover {
-    transform: translateY(-5px); /* Lift card slightly */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1); /* Tailwind shadow-lg, adjusted alpha */
-  }
-  
-  /* Section header underline style */
-  .section-header::after {
-    content: '';
-    display: block; /* Make it a block element */
-    width: 50px; /* Fixed width */
-    height: 3px; /* Thickness */
-    background-color: #3b82f6; /* Tailwind blue-500 */
-    margin: 8px auto 0; /* Center the underline */
-    border-radius: 1.5px; /* Slightly rounded ends */
-  }
-  
-  /* Add any other custom, non-Tailwind styles below */
-  
-  
+    <div class="flex flex-col min-h-screen">
+
+        <header class="bg-gray-800 shadow-md sticky top-0 z-50 p-4">
+            <nav class="max-w-7xl mx-auto flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-white hover:text-blue-400 transition duration-300">Krish</a>
+                <div class="space-x-4">
+                    <a href="#/" class="text-gray-300 hover:text-white">Home</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white">Projects</a>
+                    <a href="#publications" class="text-gray-300 hover:text-white">Publications</a>
+                    <a href="#about" class="text-gray-300 hover:text-white">About</a>
+                    </div>
+            </nav>
+        </header>
+
+        <main id="app" class="flex-grow p-4 md:p-8">
+            <p class="text-center text-gray-500">Loading...</p>
+        </main>
+
+        <footer class="bg-gray-800 text-gray-500 py-4 mt-auto">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+                &copy; 2025 Krish [Your Last Name]. All Rights Reserved.
+                <p class="mt-1">Powered by Vanilla JS SPA on <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 underline">GitHub Pages</a>.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
