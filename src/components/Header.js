@@ -2,18 +2,10 @@ import React from 'react';
 import './Header.css';
 
 const Header = () => {
-  const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'education', label: 'Education' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'experience', label: 'Experience' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'publications', label: 'Publications' },
-    { id: 'contact', label: 'Contact' },
-  ];
-
-  const scrollToSection = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  const navItems = ['About', 'Projects', 'Contact'];
+  const scrollToSection = (section) => {
+    const element = document.getElementById(section.toLowerCase());
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -22,8 +14,8 @@ const Header = () => {
       <nav>
         <ul>
           {navItems.map((item) => (
-            <li key={item.id} onClick={() => scrollToSection(item.id)}>
-              {item.label}
+            <li key={item} onClick={() => scrollToSection(item)}>
+              {item}
             </li>
           ))}
         </ul>

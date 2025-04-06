@@ -1,49 +1,30 @@
-import React, { useState } from 'react';
-import Modal from './Modal';
+import React from 'react';
+import './Projects.css';
 
-const Projects = () => {
-  const [modalContent, setModalContent] = useState(null);
+const projects = [
+  {
+    title: 'Sentiment Analysis Pipeline',
+    description: 'A comprehensive pipeline using AWS services and BERT to analyze sentiments from thousands of reviews.'
+  },
+  {
+    title: 'Network Intrusion Detection System',
+    description: 'A Python-based system using TensorFlow and Splunk to detect and alert on network intrusions in real time.'
+  },
+  {
+    title: 'Restaurant Data Analysis',
+    description: 'Analyzed and visualized restaurant data to drive improved decision making with interactive dashboards.'
+  }
+];
 
-  const projects = [
-    {
-      title: 'Sentiment Analysis Pipeline',
-      subtitle: 'AWS, SageMaker, Glue, Athena, S3, CloudWatch, Data Wrangler, BERT',
-      description: 'Built an AWS-based ML pipeline for sentiment analysis on 23,000+ reviews. Automated data ingestion and cleaning using AWS Glue, reducing preprocessing time by 40%.'
-    },
-    {
-      title: 'Network Intrusion Detection System (NIDS)',
-      subtitle: 'Python, TensorFlow, Databricks, Splunk, MongoDB',
-      description: 'Developed a NIDS achieving a 97% detection rate using anomaly detection techniques and real-time alerting with Splunk.'
-    },
-    {
-      title: 'Restaurant Data Analysis and Recommendation System',
-      subtitle: 'Python, R, Power BI, SQL, Snowflake',
-      description: 'Processed over 10,000 restaurant records, constructed interactive dashboards with Power BI, and enhanced managerial decision-making.'
-    }
-  ];
-
-  const openModal = (project) => {
-    setModalContent(project);
-  };
-
-  const closeModal = () => {
-    setModalContent(null);
-  };
-
-  return (
-    <div className="projects">
-      <h2>Projects</h2>
-      <div className="project-list">
-        {projects.map((project, idx) => (
-          <div className="project-card" key={idx} onClick={() => openModal(project)}>
-            <h3>{project.title}</h3>
-            <p>{project.subtitle}</p>
-          </div>
-        ))}
+const Projects = () => (
+  <section id="projects" className="projects">
+    {projects.map((project, index) => (
+      <div className="project-card" key={index}>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
       </div>
-      {modalContent && <Modal content={modalContent} onClose={closeModal} />}
-    </div>
-  );
-};
+    ))}
+  </section>
+);
 
 export default Projects;

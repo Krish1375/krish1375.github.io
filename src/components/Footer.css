@@ -1,10 +1,8 @@
+/* Footer.css */
 .footer {
-    width: 100%;
-    text-align: center;
-    padding: 15px 0;
-    background: #282c34;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-  }
-  
+  text-align: center;
+  padding: 20px;
+  background: #1e1e1e;
+  color: #aaa;
+  font-size: 0.9rem;
+}

@@ -1,35 +1,38 @@
+/* Header.css */
 .header {
-    width: 100%;
-    padding: 10px 20px;
-    background: #282c34;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    z-index: 100;
-  }
-  
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-  }
-  
-  nav li {
-    margin: 0 15px;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  nav li:hover {
-    color: #61dafb;
-  }
-  
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: linear-gradient(90deg, #00bcd4, #8bc34a);
+  padding: 20px 40px;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.logo {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.3s, transform 0.3s;
+}
+
+nav ul li:hover {
+  color: #ff4081;
+  transform: scale(1.1);
+}
