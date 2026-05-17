@@ -1,2 +1,40 @@
-node_modules
-venv
+# Dependency directories
+node_modules/
+venv/
+env/
+.venv/
+
+# Production build outputs 
+# (You only want these on your gh-pages branch, not master)
+dist/
+build/
+
+# Local environment variables (keeps secrets safe)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# npm/yarn debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
