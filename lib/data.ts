@@ -21,7 +21,7 @@ export const meta: Meta = {
   github: "https://github.com/Krish1375",
   linkedin: "https://www.linkedin.com/in/krishshah10/",
   scholar: "https://doi.org/10.1007/s11042-025-20751-z",
-  cvUrl: "/cv.pdf",
+
 };
 
 export const navLinks: NavLink[] = [
