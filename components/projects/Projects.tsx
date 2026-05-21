@@ -11,11 +11,8 @@ const container = {
 };
 
 export function Projects() {
-  const topRow = projects.slice(0, 3);
-  const bottomRow = projects.slice(3);
-
   return (
-    <section id="work" className="px-6 md:px-10 py-20 md:py-28">
+    <section id="work" className="page-container py-20 md:py-28">
       <FadeUp>
         <p className="section-label">Selected Work</p>
         <h2 className="section-headline">
@@ -25,32 +22,16 @@ export function Projects() {
 
       <FadeUp delay={0.08}>
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px"
-          style={{ background: "var(--gold-dim)" }}
+          className="flex flex-col gap-10"
           variants={container}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-15% 0px" }}
         >
-          {topRow.map((p) => (
+          {projects.map((p) => (
             <ProjectCard key={p.title} project={p} />
           ))}
         </motion.div>
-
-        {bottomRow.length > 0 && (
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-px mt-px"
-            style={{ background: "var(--gold-dim)" }}
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-15% 0px" }}
-          >
-            {bottomRow.map((p) => (
-              <ProjectCard key={p.title} project={p} />
-            ))}
-          </motion.div>
-        )}
       </FadeUp>
     </section>
   );

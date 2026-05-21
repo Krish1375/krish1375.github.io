@@ -22,15 +22,16 @@ export function Nav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-[350ms] ease-in-out"
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-[350ms] ease-in-out page-pad"
       style={{
-        padding: scrolled ? "12px 40px" : "18px 40px",
+        paddingTop: scrolled ? 12 : 18,
+        paddingBottom: scrolled ? 12 : 18,
         background: scrolled ? "rgba(8,9,12,0.88)" : "transparent",
         backdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled ? "var(--border)" : "none",
       }}
     >
-      <nav className="flex items-center justify-between max-w-[1400px] mx-auto">
+      <nav className="flex items-center justify-between max-w-[1280px] mx-auto">
         <a
           href="#"
           onClick={(e) => {

@@ -13,14 +13,10 @@ export interface Meta {
 }
 
 export interface Counters {
-  inferenceRatePerSecond: number;
   productionModels: number;
   productionModelsNote: string;
   publications: number;
   publicationsNote: string;
-  githubStarsBase: number;
-  liveSubLabel: string;
-  starsSubLabel: string;
 }
 
 export interface JourneyStep {
@@ -58,11 +54,6 @@ export interface RadarSkill {
 export interface SkillBar {
   name: string;
   level: number;
-}
-
-export interface TerminalLine {
-  type: "prompt" | "output" | "success" | "error";
-  text: string;
 }
 
 export interface NavLink {

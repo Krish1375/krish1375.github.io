@@ -2,6 +2,7 @@
 
 import type { Project } from "@/lib/types";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const item = {
   hidden: { opacity: 0, y: 24 },
@@ -13,33 +14,48 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const content = (
+  const [expanded, setExpanded] = useState(false);
+
+  const inner = (
     <motion.article
       variants={item}
-      className="group relative p-6 md:p-8 h-full flex flex-col transition-colors duration-200 hover:bg-[var(--bg-tertiary)]"
-      style={{ background: "var(--bg-secondary)" }}
+      onMouseEnter={() => setExpanded(true)}
+      onMouseLeave={() => setExpanded(false)}
+      className="relative flex flex-col p-8 md:p-10 transition-all duration-300"
+      style={{
+        background: "var(--bg-secondary)",
+        border: "var(--border)",
+        boxShadow: expanded
+          ? "0 24px 48px rgba(0,0,0,0.45)"
+          : "0 0 0 transparent",
+        zIndex: expanded ? 10 : 1,
+      }}
     >
-      <p className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.22em] uppercase text-[var(--gold)] mb-3">
+      <p className="font-[family-name:var(--font-mono)] text-[8px] tracking-[0.22em] uppercase text-[var(--gold)] mb-4">
         {project.tag}
       </p>
-      <h3 className="font-[family-name:var(--font-display)] text-[19px] font-normal text-[var(--fg-primary)] mb-3">
+      <h3 className="font-[family-name:var(--font-display)] text-[22px] font-normal text-[var(--fg-primary)] mb-4 leading-snug">
         {project.title}
       </h3>
-      <p className="font-[family-name:var(--font-mono)] text-[9px] leading-[1.75] text-[var(--fg-muted)] mb-4">
+      <p className="font-[family-name:var(--font-mono)] text-[10px] leading-[1.85] text-[var(--fg-muted)] mb-6">
         {project.desc}
       </p>
 
       <div
-        className="overflow-hidden transition-[max-height] duration-[350ms] ease-in-out max-h-0 group-hover:max-h-[200px]"
+        className="overflow-hidden transition-all duration-300 ease-out"
+        style={{
+          maxHeight: expanded ? 280 : 0,
+          opacity: expanded ? 1 : 0,
+        }}
       >
-        <div className="pt-4" style={{ borderTop: "var(--border)" }}>
-          <div className="flex flex-wrap gap-6 mb-4">
+        <div className="pt-6" style={{ borderTop: "var(--border)" }}>
+          <div className="flex flex-wrap gap-8 mb-6">
             {project.metrics.map((m) => (
               <div key={m.key}>
                 <p className="font-[family-name:var(--font-display)] font-semibold text-[22px] text-[var(--gold)]">
                   {m.val}
                 </p>
-                <p className="font-[family-name:var(--font-mono)] text-[8px] text-[var(--fg-muted)]">
+                <p className="font-[family-name:var(--font-mono)] text-[8px] text-[var(--fg-muted)] mt-1">
                   {m.key}
                 </p>
               </div>
@@ -49,7 +65,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
             {project.stack.map((t) => (
               <span
                 key={t}
-                className="font-[family-name:var(--font-mono)] text-[8px] px-2 py-1 text-[var(--gold)]"
+                className="font-[family-name:var(--font-mono)] text-[8px] px-3 py-1.5 text-[var(--gold)]"
                 style={{ border: "var(--border-hover)" }}
               >
                 {t}
@@ -59,7 +75,10 @@ export function ProjectCard({ project }: ProjectCardProps) {
         </div>
       </div>
 
-      <span className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 text-[var(--gold)] transition-opacity duration-200">
+      <span
+        className="absolute bottom-8 right-8 text-[var(--gold)] transition-opacity duration-200"
+        style={{ opacity: expanded ? 1 : 0.35 }}
+      >
         ↗
       </span>
     </motion.article>
@@ -67,10 +86,15 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
   if (project.link && project.link !== "#") {
     return (
-      <a href={project.link} target="_blank" rel="noopener noreferrer">
-        {content}
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="block"
+      >
+        {inner}
       </a>
     );
   }
-  return content;
+  return inner;
 }

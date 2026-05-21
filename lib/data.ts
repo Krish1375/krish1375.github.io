@@ -7,7 +7,6 @@ import type {
   Project,
   RadarSkill,
   SkillBar,
-  TerminalLine,
 } from "./types";
 
 export const meta: Meta = {
@@ -32,14 +31,10 @@ export const navLinks: NavLink[] = [
 ];
 
 export const counters: Counters = {
-  inferenceRatePerSecond: 2.7,
   productionModels: 5,
   productionModelsNote: "across Amazon, industry & research",
   publications: 1,
   publicationsNote: "Springer · Multimedia Tools and Applications",
-  githubStarsBase: 0,
-  liveSubLabel: "▲ agentic AI platform live at Amazon Robotics",
-  starsSubLabel: "▲ open source & portfolio repos",
 };
 
 export const journey: JourneyStep[] = [
@@ -202,29 +197,6 @@ export const skills = {
   },
 };
 
-export const terminal = {
-  lines: [
-    { type: "prompt", text: "git log --oneline -5" },
-    {
-      type: "output",
-      text: "a3f9c12  feat: LangGraph agent nodes for ticket diagnosis",
-    },
-    {
-      type: "output",
-      text: "b81d004  fix: context overflow causing hallucinations in RAG",
-    },
-    {
-      type: "output",
-      text: "cc20a1f  experiment: structured outputs with Pydantic grounding",
-    },
-    { type: "prompt", text: "python eval_agent.py --split holdout --judge llm" },
-    {
-      type: "success",
-      text: "✓ Classification: 0.85  Hallucination rate: -40%  Eval set: 200 tickets",
-    },
-    { type: "prompt", text: "deploy --target aws-fargate --service agentic-platform" },
-  ] as TerminalLine[],
-};
 
 export const heroDescription =
   "Not just models in notebooks. Real pipelines, real evals, real production systems. M.S. Data Science from UW–Madison (3.85 GPA).";

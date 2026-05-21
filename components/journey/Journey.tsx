@@ -10,14 +10,12 @@ export function Journey() {
   useEffect(() => {
     const id = setInterval(() => {
       setCurrentStep((s) => (s + 1) % journey.length);
-    }, 2200);
+    }, 3500);
     return () => clearInterval(id);
   }, []);
 
-  const markerLeft = `${(currentStep / (journey.length - 1)) * 100}%`;
-
   return (
-    <section id="research" className="px-6 md:px-10 py-20 md:py-28">
+    <section id="research" className="page-container py-20 md:py-28">
       <FadeUp>
         <p className="section-label">My Journey</p>
         <h2 className="section-headline">
@@ -26,81 +24,93 @@ export function Journey() {
       </FadeUp>
 
       <FadeUp delay={0.08}>
-        <div className="relative mb-10 hidden md:block">
+        <div className="relative max-w-3xl">
+          {/* Vertical spine */}
           <div
-            className="h-[2px] w-full"
+            className="absolute left-[11px] top-3 bottom-3 w-[2px]"
             style={{ background: "var(--gold-dim)" }}
-          />
-          <span
-            className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 text-[var(--gold)] text-lg transition-[left] duration-[400ms] ease-in-out"
-            style={{ left: markerLeft }}
             aria-hidden
-          >
-            ⬡
-          </span>
-        </div>
+          />
 
-        <div
-          className="hidden md:grid gap-px"
-          style={{
-            gridTemplateColumns: `repeat(${journey.length}, 1fr)`,
-            background: "var(--gold-dim)",
-          }}
-        >
-          {journey.map((step, i) => (
-            <button
-              key={step.num}
-              type="button"
-              onClick={() => setCurrentStep(i)}
-              className="text-left p-6 transition-colors duration-200"
-              style={{
-                background:
-                  i === currentStep ? "var(--bg-tertiary)" : "var(--bg-secondary)",
-              }}
-            >
-              <p
-                className="font-[family-name:var(--font-mono)] text-[9px] tracking-[0.2em] mb-2"
-                style={{
-                  color: i === currentStep ? "var(--gold)" : "var(--fg-muted)",
-                }}
-              >
-                {step.num}
-              </p>
-              <p
-                className="font-[family-name:var(--font-display)] text-[17px] mb-2"
-                style={{
-                  color: i === currentStep ? "var(--gold)" : "var(--fg-primary)",
-                }}
-              >
-                {step.title}
-              </p>
-              <p className="font-[family-name:var(--font-mono)] text-[9px] leading-[1.75] text-[var(--fg-muted)]">
-                {step.desc}
-              </p>
-            </button>
-          ))}
-        </div>
+          <ul className="flex flex-col gap-0">
+            {journey.map((step, i) => {
+              const isActive = i === currentStep;
+              const isPast = i < currentStep;
 
-        <div className="md:hidden flex flex-col gap-px" style={{ background: "var(--gold-dim)" }}>
-          {journey.map((step, i) => (
-            <button
-              key={step.num}
-              type="button"
-              onClick={() => setCurrentStep(i)}
-              className="text-left p-5 w-full"
-              style={{
-                background:
-                  i === currentStep ? "var(--bg-tertiary)" : "var(--bg-secondary)",
-              }}
-            >
-              <p className="font-[family-name:var(--font-mono)] text-[9px] text-[var(--gold)] mb-1">
-                {step.num} · {step.title}
-              </p>
-              <p className="font-[family-name:var(--font-mono)] text-[9px] text-[var(--fg-muted)]">
-                {step.desc}
-              </p>
-            </button>
-          ))}
+              return (
+                <li key={step.num} className="relative pl-12 pb-14 last:pb-0">
+                  {/* Node */}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(i)}
+                    className="absolute left-0 top-1 z-10 flex h-6 w-6 items-center justify-center transition-all duration-300"
+                    aria-label={`${step.title}`}
+                    aria-current={isActive ? "step" : undefined}
+                  >
+                    <span
+                      className="flex h-6 w-6 items-center justify-center text-[10px] transition-all duration-300"
+                      style={{
+                        color: isActive ? "var(--gold)" : "var(--fg-muted)",
+                        transform: isActive ? "scale(1.15)" : "scale(1)",
+                      }}
+                    >
+                      {isActive ? "⬡" : "○"}
+                    </span>
+                  </button>
+
+                  {/* Connector pulse on active segment */}
+                  {i < journey.length - 1 && (
+                    <div
+                      className="absolute left-[11px] top-8 w-[2px] transition-all duration-500"
+                      style={{
+                        height: "calc(100% - 8px)",
+                        background: isPast || isActive
+                          ? "rgba(200, 170, 100, 0.35)"
+                          : "transparent",
+                      }}
+                      aria-hidden
+                    />
+                  )}
+
+                  {/* Card */}
+                  <button
+                    type="button"
+                    onClick={() => setCurrentStep(i)}
+                    className="w-full text-left p-6 md:p-8 transition-all duration-300"
+                    style={{
+                      background: isActive
+                        ? "var(--bg-tertiary)"
+                        : "var(--bg-secondary)",
+                      border: isActive
+                        ? "var(--border-hover)"
+                        : "var(--border)",
+                      marginLeft: 0,
+                    }}
+                  >
+                    <p
+                      className="font-[family-name:var(--font-mono)] text-[9px] tracking-[0.2em] mb-3"
+                      style={{
+                        color: isActive ? "var(--gold)" : "var(--fg-muted)",
+                      }}
+                    >
+                      {step.num}
+                    </p>
+                    <p
+                      className="font-[family-name:var(--font-display)] text-[20px] md:text-[22px] mb-4 leading-snug"
+                      style={{
+                        color: isActive ? "var(--gold)" : "var(--fg-primary)",
+                      }}
+                    >
+                      {step.title}
+                    </p>
+                    <p className="font-[family-name:var(--font-mono)] text-[10px] leading-[1.85] text-[var(--fg-muted)] max-w-xl">
+                      {step.desc}
+                    </p>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </FadeUp>
     </section>

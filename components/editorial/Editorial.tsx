@@ -33,7 +33,7 @@ const row: Variants = {
 export function Editorial() {
   return (
     <section
-      className="px-6 md:px-10"
+      className="page-container"
       style={{ borderTop: "var(--border)" }}
     >
       <FadeUp className="pt-20 pb-4">

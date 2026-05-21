@@ -6,7 +6,6 @@ import { Journey } from "@/components/journey/Journey";
 import { Projects } from "@/components/projects/Projects";
 import { Editorial } from "@/components/editorial/Editorial";
 import { Skills } from "@/components/skills/Skills";
-import { Terminal } from "@/components/terminal/Terminal";
 import { Contact } from "@/components/contact/Contact";
 import { Footer } from "@/components/Footer";
 
@@ -22,7 +21,6 @@ export default function Home() {
       <OscDivider />
       <Editorial />
       <Skills />
-      <Terminal />
       <Contact />
       <Footer />
     </main>

@@ -37,7 +37,7 @@ export function Skills() {
   const inView = useInView(ref, { once: true, margin: "-15% 0px" });
 
   return (
-    <section id="stack" ref={ref} className="px-6 md:px-10 py-20 md:py-28">
+    <section id="stack" ref={ref} className="page-container py-20 md:py-28">
       <FadeUp>
         <p className="section-label">Technical Stack</p>
         <h2 className="section-headline">
