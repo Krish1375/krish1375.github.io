@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { portfolioData } from '../data';
+import SkillSphere from './SkillSphere';
 
 const SCROLL_PER_CARD = 400; 
 const CARD_OFFSET = 16;      
@@ -54,13 +55,17 @@ const Skills = () => {
       <div style={{ position: "sticky", top: 0, height: "100vh", padding: "10vh 10% 6vh", overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <div style={{ maxWidth: "960px", width: "100%", margin: "0 auto", flex: 1, display: "flex", flexDirection: "column" }}>
           
-          <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.04em", marginBottom: "1rem" }}>Technical Arsenal.</h2>
-          
-          <div style={{ display: "flex", gap: "6px", marginBottom: "1.5rem" }}>
-            {skills.map((_, i) => (
-              <div key={i} style={{ width: activeIndex === i ? "18px" : "6px", height: "6px", borderRadius: "3px", background: activeIndex === i ? "#0071e3" : "#d2d2d7", transition: "width 0.3s ease, background 0.3s ease" }} />
-            ))}
-          </div>
+          <div style={{ display: "flex", flexDirection: "row", gap: "2rem", alignItems: "flex-start", flex: 1, minHeight: 0 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
+              <h2 style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)", fontWeight: 600, color: "#1d1d1f", letterSpacing: "-0.04em", marginBottom: "1rem" }}>Technical Arsenal.</h2>
+              <div style={{ display: "flex", gap: "6px", marginBottom: "1.5rem" }}>
+                {skills.map((_, i) => (
+                  <div key={i} style={{ width: activeIndex === i ? "18px" : "6px", height: "6px", borderRadius: "3px", background: activeIndex === i ? "#0071e3" : "#d2d2d7", transition: "width 0.3s ease, background 0.3s ease" }} />
+                ))}
+              </div>
+              <SkillSphere />
+            </div>
+
 
           <div style={{ position: "relative", flex: 1, minHeight: 0 }}>
             {skills.map((group, i) => (
@@ -69,6 +74,7 @@ const Skills = () => {
           </div>
           
           <p style={{ fontSize: "0.85rem", color: "#86868b", marginTop: "1rem" }}>{activeIndex + 1} / {skills.length}</p>
+          </div>
         </div>
       </div>
     </section>
