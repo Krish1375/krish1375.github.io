@@ -1,6 +1,6 @@
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Text, TrackballControls } from '@react-three/drei';
+import { Text, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 const skills = [
@@ -48,17 +48,8 @@ function Cloud({ count = 8, radius = 20 }) {
     return temp;
   }, [count, radius]);
 
-  const groupRef = useRef();
-
-  useFrame(({ clock }) => {
-    if (groupRef.current) {
-      groupRef.current.rotation.y = clock.getElapsedTime() * 0.05;
-      groupRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.05) * 0.2;
-    }
-  });
-
   return (
-    <group ref={groupRef}>
+    <group>
       {words.map(([pos, word], index) => (
         <Word key={index} position={pos} children={word} />
       ))}
@@ -73,7 +64,7 @@ export default function SkillSphere() {
         <fog attach="fog" args={['#ffffff', 0, 80]} />
         <ambientLight intensity={Math.PI} />
         <Cloud count={4} radius={20} />
-        <TrackballControls noZoom noPan rotateSpeed={2} />
+        <OrbitControls enablePan={false} enableZoom={false} autoRotate autoRotateSpeed={1.5} />
       </Canvas>
     </div>
   );

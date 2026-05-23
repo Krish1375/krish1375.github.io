@@ -1,6 +1,6 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, Suspense, lazy } from 'react';
 import { portfolioData } from '../data';
-import SkillSphere from './SkillSphere';
+const SkillSphere = lazy(() => import('./SkillSphere'));
 
 const SCROLL_PER_CARD = 400; 
 const CARD_OFFSET = 16;      
@@ -63,7 +63,9 @@ const Skills = () => {
                   <div key={i} style={{ width: activeIndex === i ? "18px" : "6px", height: "6px", borderRadius: "3px", background: activeIndex === i ? "#0071e3" : "#d2d2d7", transition: "width 0.3s ease, background 0.3s ease" }} />
                 ))}
               </div>
-              <SkillSphere />
+              <Suspense fallback={<div style={{ height: '400px', width: '100%' }} />}>
+                <SkillSphere />
+              </Suspense>
             </div>
 
 

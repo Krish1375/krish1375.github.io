@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
-import ScrollObject3D from './components/ScrollObject3D';
+import SmoothScroll from './components/SmoothScroll';
+const ScrollObject3D = lazy(() => import('./components/ScrollObject3D'));
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
+import Journey from './components/Journey';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Projects from './components/Projects';
@@ -13,18 +15,23 @@ import Contact from './components/Contact';
 
 function App() {
   return (
-    <div className="App">
-      <ScrollObject3D />
-      <Header />
-      <Hero />
-      <About />
-      <Experience />
-      <Education />
-      <Projects />
-      <Publications />
-      <Skills />
-      <Contact />
-    </div>
+    <SmoothScroll>
+      <div className="App">
+        <Suspense fallback={null}>
+          <ScrollObject3D />
+        </Suspense>
+        <Header />
+        <Hero />
+        <About />
+        <Journey />
+        <Experience />
+        <Education />
+        <Projects />
+        <Publications />
+        <Skills />
+        <Contact />
+      </div>
+    </SmoothScroll>
   );
 }
 
