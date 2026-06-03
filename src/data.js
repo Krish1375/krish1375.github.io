@@ -91,16 +91,37 @@ export const portfolioData = {
       description:
         "Built a multi-agent system using LangGraph and RAG to automate hospital support triage. Five agents handle intake, routing, prioritization, resolution, and escalation. It cut administrative overhead by 60 percent and reduced task time significantly. I connected Streamlit to a PostgreSQL backend so teams could see what the agents were doing in real time and where bottlenecks were forming.",
       tech: ["Python", "LangGraph", "LangChain", "RAG", "AWS", "Streamlit", "PostgreSQL"],
-      metric: "60% reduction in administrative overhead",
-      link: null,
+      metric: "Agentic workflow to reduce administrative overhead in hospitals",
+      link: "https://github.com/Krish1375/AuraMed",
     },
     {
       title: "Restaurant Recommendation and Analytics System",
       description:
         "Deployed a Snowflake backed recommendation system that processed over 10,000 records and improved user ratings by 40 percent. Built the full data ingestion pipeline and Power BI dashboards that replaced manual reporting so the management team could make faster decisions with better data.",
       tech: ["Python", "R", "SQL", "Snowflake", "Power BI", "ETL"],
-      metric: "40% improvement in user ratings",
+      metric: "Recommendation and Analytics for restaurants",
       link: null,
+    },
+    {
+      title: "Crop and Weed Segmentation",
+      description: "Implemented a deep learning model for precision agriculture that segments crop and weed pixels from field images. This helps in targeted herbicide application, reducing chemical usage and improving crop yield.",
+      tech: ["Python", "Computer Vision", "Deep Learning", "PyTorch"],
+      metric: "Precision Agriculture",
+      link: "https://github.com/Krish1375/Crop-and-Weed-Segmentation",
+    },
+    {
+      title: "Exoplanet Detection",
+      description: "Developed a machine learning pipeline to analyze time-series light curve data from space telescopes. Handled data imbalances and extracted features to accurately classify potential exoplanet transit signatures.",
+      tech: ["Python", "Machine Learning", "Time Series Analysis", "Scikit-learn"],
+      metric: "Astronomical Data Analysis",
+      link: "https://github.com/Krish1375/exoplanet_detection",
+    },
+    {
+      title: "Image Compression using K-Means",
+      description: "Built an image compression algorithm utilizing K-Means clustering. By reducing the number of colors in an image to the most dominant ones, it significantly decreases the file size while preserving visual quality.",
+      tech: ["Python", "Unsupervised Learning", "K-Means", "OpenCV"],
+      metric: "Efficient Data Storage",
+      link: "https://github.com/Krish1375/Image-Compression-using-K-means",
     },
   ],
 
